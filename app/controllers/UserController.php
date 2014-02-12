@@ -95,8 +95,8 @@ class UserController extends BaseController {
     public function postLogin()
     {
         $input = array(
-            'email'    => Input::get( 'email' ), // May be the username too
-            'username' => Input::get( 'email' ), // so we have to pass both
+            'email'    => Input::get( 'username' ), // May be the username too
+            'username' => Input::get( 'username' ), // so we have to pass both
             'password' => Input::get( 'password' ),
             'remember' => Input::get( 'remember' ),
         );
@@ -132,7 +132,7 @@ class UserController extends BaseController {
             }
 
             return Redirect::to('user/login')
-                ->with( 'error', $err_msg );
+                ->with('error', $err_msg);
         }
     }
 

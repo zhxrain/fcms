@@ -6,7 +6,7 @@
     <form action="login" method="post">
       <h1>Login Form</h1>
       <div id="login-error">
-        {{ $error or 'yield' }}
+        {{ Session::get('error') }}
       </div>
       <div>
         <input type="text" name="username" placeholder="用户名" required="" id="username" />
