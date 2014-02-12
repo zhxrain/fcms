@@ -8,3 +8,4 @@ composer.lock
 Thumbs.db
 /public/packages/
 /app/database/production.sqlite
+/app/storage/debugbar/
