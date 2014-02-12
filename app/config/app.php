@@ -106,10 +106,11 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-    'Codesleeve\AssetPipeline\AssetPipelineServiceProvider',
-    'Zizaco\Confide\ConfideServiceProvider',
-    'Zizaco\Entrust\EntrustServiceProvider',
-    'Way\Generators\GeneratorsServiceProvider',
+	    'Codesleeve\AssetPipeline\AssetPipelineServiceProvider',
+	    'Zizaco\Confide\ConfideServiceProvider',
+	    'Zizaco\Entrust\EntrustServiceProvider',
+	    'Way\Generators\GeneratorsServiceProvider',
+	    'Barryvdh\Debugbar\ServiceProvider',
 
 	),
 
@@ -176,8 +177,9 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-    'Confide'         => 'Zizaco\Confide\ConfideFacade',
-    'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
+    	'Confide'         => 'Zizaco\Confide\ConfideFacade',
+    	'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
+    	'Debugbar' 		  => 'Barryvdh\Debugbar\Facade',
 
 	),
 

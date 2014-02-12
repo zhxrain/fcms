@@ -8,6 +8,7 @@
 | authentication. Feel free to change to your needs.
 |
 */
+use DebugBar\StandardDebugBar;
 
 class UserController extends BaseController {
 
@@ -54,17 +55,17 @@ class UserController extends BaseController {
         if ( $user->id )
         {
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
-                        return Redirect::to('user/login')
-                            ->with( 'notice', Lang::get('confide::confide.alerts.account_created') );
+            return Redirect::to('user/login')
+                ->with( 'notice', Lang::get('confide::confide.alerts.account_created') );
         }
         else
         {
             // Get validation errors (see Ardent package)
             $error = $user->errors()->all(':message');
 
-                        return Redirect::to('user/create')
-                            ->withInput(Input::except('password'))
-                ->with( 'error', $error );
+            return Redirect::to('user/create')
+                ->withInput(Input::except('password'))
+                    ->with( 'error', $error );
         }
     }
 
@@ -83,7 +84,7 @@ class UserController extends BaseController {
         else
         {
             //return View::make(Config::get('confide::login_form'));
-            return View::make('layouts.login');
+            return View::make('login');
         }
     }
 
@@ -104,7 +105,7 @@ class UserController extends BaseController {
         // with the second parameter as true.
         // logAttempt will check if the 'email' perhaps is the username.
         // Get the value from the config file instead of changing the controller
-        if ( Confide::logAttempt( $input, Config::get('confide::signup_confirm') ) ) 
+        if ( Confide::logAttempt( $input)) 
         {
             // Redirect the user to the URL they were trying to access before
             // caught by the authentication filter IE Redirect::guest('user/login').
@@ -130,8 +131,7 @@ class UserController extends BaseController {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
 
-                        return Redirect::to('user/login')
-                            ->withInput(Input::except('password'))
+            return Redirect::to('user/login')
                 ->with( 'error', $err_msg );
         }
     }
@@ -233,7 +233,7 @@ class UserController extends BaseController {
     {
         Confide::logout();
         
-        return Redirect::to('/');
+        return Redirect::to('/user/login');
     }
 
 }
