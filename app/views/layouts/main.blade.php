@@ -59,8 +59,7 @@
   </div>
   <div class="pane ui-layout-center">
     <div class="container" id="page">
-      @yield('content')
-      <iframe id="frame" src="index.php?r=site/dashboard" width="100%" height="100%"></iframe>
+      <iframe id="frame" src="user" width="100%" height="100%"></iframe>
     </div>
   </div>
   <div class="pane ui-layout-south">
