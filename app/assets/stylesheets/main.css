@@ -19,6 +19,13 @@ html, body {
   _width:600px; /* min-width for IE6 */boot/
 }
 
+#page
+{
+  background: white;
+	width: 100%;
+  height: 100%;
+}
+
 #footer
 {
   font-size: 0.8em;
@@ -34,4 +41,9 @@ html, body {
 .header-bg {
   background-image: url(top04.jpg);
   background-repeat: repeat-x;
+}
+
+#frame
+{
+  border: 0px;
 }

@@ -111,6 +111,7 @@ return array(
 	    'Zizaco\Entrust\EntrustServiceProvider',
 	    'Way\Generators\GeneratorsServiceProvider',
 	    'Barryvdh\Debugbar\ServiceProvider',
+	    'Baum\BaumServiceProvider',
 
 	),
 
