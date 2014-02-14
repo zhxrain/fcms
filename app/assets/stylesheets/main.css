@@ -1,6 +1,37 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	color: #444;
+	-webkit-font-smoothing: antialiased;
+	background: #f0f0f0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /* when page gets too small */
+}
+
+#container {
+	width: 100%;
+  height: 100%;
+  margin: -1px auto;
+  background: #fff;
+  min-width:600px;
+  _width:600px; /* min-width for IE6 */boot/
+}
+
 #footer
 {
   font-size: 0.8em;
   text-align: center;
   border-top: 1px solid #C9E0ED;
+}
+
+#nav-sidebar
+{
+	border-top: 1px solid #C9E0ED;
+}
+
+.header-bg {
+  background-image: url(top04.jpg);
+  background-repeat: repeat-x;
 }

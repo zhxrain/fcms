@@ -9,7 +9,7 @@
 
   <script>
     $(document).ready(function () {
-        $('body').layout({
+        $('#container').layout({
             closable: true
           , resizable: true
           , west__size: 180
@@ -19,7 +19,7 @@
           , south__resizable: false
           , south__spacing_open: 0
         });
-        $("body > .ui-layout-north").layout({
+        $("#container > .ui-layout-north").layout({
             closable: false
           , west__size: 180
           , west__resizable: false
@@ -33,11 +33,8 @@
 </head>
 
 <body>
-
+<div id="container">
   <div class="header-bg pane ui-layout-north">
-    <div class="ui-layout-west">
-      <img src='assets/logo.png'></img>
-    </div>
     <div class="ui-layout-center" align="center" style="padding-top:30px;">
       <ul id='dock-menu' class='jqDockAuto' data-jqdock-align='bottom' data-jqdock-labels='true'>
         <li><a href='#' title='Favourites'><img src='assets/uploads.png' alt='' /></a></li>
@@ -79,6 +76,6 @@
     <li class="delete"><a href="#">Delete</a></li>
   </ul>
 </div-->
-
+</div>
 </body>
 </html>

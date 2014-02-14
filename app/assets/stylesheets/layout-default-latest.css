@@ -53,7 +53,6 @@ body {
 .layout-child-container,
 .layout-content-container {
 	padding:	0;
-	overflow:	hidden;
 }
 .layout-child-container {
 	border:		0; /* remove border because inner-layout-panes probably have borders */
