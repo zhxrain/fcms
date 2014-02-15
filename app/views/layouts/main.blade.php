@@ -9,6 +9,7 @@
 
   <script>
     $(document).ready(function () {
+        $('.nav').navgoco();
         $('#container').layout({
             closable: true
           , resizable: true
@@ -28,6 +29,7 @@
           , east__resizable: false
           , east__spacing_open: 0
         });
+
     });
   </script>
 </head>
@@ -51,7 +53,64 @@
   </div>
   <div class="pane ui-layout-west" id="nav-sidebar">
     <ul class="nav">
-      <p>WEST!</p>
+    <!--li><a href="#">1. Menu</a>
+        <ul>
+            <li><a href="#">1.1 Submenu</a></li>
+            <li><a href="#">1.2 Submenu</a></li>
+            <li><a href="#">1.3 Submenu</a></li>
+        </ul>
+    </li-->
+    <?php 
+      /*$user = Yii::app()->user;*/
+      //$auth=Yii::app()->authManager;
+      //$roles=$auth->getRoles($user->id);
+      //$menu_items=array();
+      //foreach($roles as $n=>$role) {
+        //$items=MenuItem::model()->with('roles')->findAll(array('condition'=>'roles.name="'.$role->getName().'"', 'order'=>'id'));
+        //$menu_items=array_merge($menu_items, $items);
+      /*}*/
+
+      $depth=0;
+      $flag=0;
+      foreach($menu_items as $n=>$item)
+      {
+        if($item->depth==$depth)
+        {
+          if($flag == 0){
+            $flag = 1;
+          }
+          else{
+            echo "</li>\n";
+          }
+        }
+        else if($item->depth>$depth)
+        {
+          echo "<ul>\n";
+        }
+        else
+        {
+          echo "</li>\n";
+
+          for($i=$depth-$item->depth;$i;$i--)
+          {
+            echo "</ul>\n";
+            echo "</li>\n";
+          }
+        }
+
+        echo "<li uri=\"".$item->uri."\">";
+        echo "<a href=\"#\">";
+        echo $item->name;
+        echo "</a>\n";
+        $depth=$item->depth;
+      }
+
+      for($i=$depth;$i;$i--)
+      {
+        echo "</ul>\n";
+        echo "</li>\n";
+      }
+    ?>
     </ul>
   </div>
   <div class="pane ui-layout-center">

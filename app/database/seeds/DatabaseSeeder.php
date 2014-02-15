@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('MenuItemTableSeeder');
     $this->command->info('MenuItem table seeded!');
+		$this->call('MenuItemRoleTableSeeder');
 	}
 
 }

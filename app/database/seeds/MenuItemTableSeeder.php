@@ -15,7 +15,7 @@ class MenuItemTableSeeder extends Seeder {
 
     $menu_sc_item1=MenuItem::create(array(
       'name' => '状态',
-      'url' => 'state'
+      'uri' => 'state'
     ));
     $menu_sc_item1->makeChildOf($root_system_config);
 
@@ -23,7 +23,7 @@ class MenuItemTableSeeder extends Seeder {
 
     $menu_nm_item1=MenuItem::create(array(
       'name' => '网络接口',
-      'url' => 'network_interface'
+      'uri' => 'network_interface'
     ));
     $menu_nm_item1->makeChildOf($root_network_management);
 		// Uncomment the below to run the seeder

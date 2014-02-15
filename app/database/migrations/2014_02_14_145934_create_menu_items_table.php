@@ -22,7 +22,7 @@ class CreateMenuItemsTable extends Migration {
       $table->integer('rgt')->nullable();
       $table->integer('depth')->nullable();
 
-      $table->string('url', 32)->nullable();
+      $table->string('uri', 32)->nullable();
       $table->string('name', 32);
 
       // Add needed columns here (f.ex: name, slug, path, etc.)
@@ -36,7 +36,7 @@ class CreateMenuItemsTable extends Migration {
       $table->index('parent_id');
       $table->index('lft');
       $table->index('rgt');
-      $table->index('url');
+      $table->index('uri');
     });
   }
 

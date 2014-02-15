@@ -21,7 +21,8 @@ class HomeController extends BaseController {
 		$users = User::all();
         if(Auth::check()) {
           $user = Auth::user()->username;
-          return View::make('layouts.main', array('users' => $users, 'current_user' => $user));
+          $menu_items = MenuItem::all();
+          return View::make('layouts.main', array('users' => $users, 'current_user' => $user, 'menu_items' => $menu_items));
         }
         return Redirect::to('user/login');
 	}

@@ -62,6 +62,10 @@ class MenuItem extends Node {
   // */
   protected $guarded = array('id', 'parent_id', 'lft', 'rgt', 'depth');
 
+  public function roles() {
+    // body...
+    return $this->belongsToMany('Role');
+  }
   //
   // This is to support "scoping" which may allow to have multiple nested
   // set trees in the same database table.
