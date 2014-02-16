@@ -9,6 +9,11 @@
 
   <script>
     $(document).ready(function () {
+      $('ul.menubar li').click(function(e)
+      {
+        $("#frame").attr("src", $(this).attr('uri'));
+      });
+
       $(".nav").navgoco({
         accordion: true,
         onClickBefore: function(e, submenu) {
@@ -37,25 +42,34 @@
           console.log('I ' + message + ' menu ' + idx + ' just before this.');
         }
       });
-        $('#container').layout({
-            closable: true
-          , resizable: true
-          , west__size: 180
-          , north__size: 84 
-          , north__resizable: false
-          , north__spacing_open: 0
-          , south__resizable: false
-          , south__spacing_open: 0
-        });
-        $("#container > .ui-layout-north").layout({
-            closable: false
-          , west__size: 180
-          , west__resizable: false
-          , east__size: 180
-          , west__spacing_open: 0
-          , east__resizable: false
-          , east__spacing_open: 0
-        });
+
+      $('#container').layout({
+          closable: true
+        , resizable: true
+        , west__size: 180
+        , north__size: 84 
+        , north__resizable: false
+        , north__spacing_open: 0
+        , south__resizable: false
+        , south__spacing_open: 0
+      });
+
+      $("#container > .ui-layout-north").layout({
+          closable: false
+        , west__size: 180
+        , west__resizable: false
+        , east__size: 180
+        , west__spacing_open: 0
+        , east__resizable: false
+        , east__spacing_open: 0
+      });
+
+      $("#container > .ui-layout-center").layout({
+          closable: false
+        , north__size: 36
+        , north__resizable: false
+        , north__spacing_open: 0
+      });
 
     });
   </script>
@@ -75,9 +89,9 @@
     </div>
     <div class="ui-layout-east" style="text-align:right;">
       <div style="margin: 50px 10px 5px 0px;">
-        <?php 
-          echo "<span class=\"profile-btn\" data-dropdown=\"#dropdown-profile\">".$current_user->username."</span>(<a href=\"user/logout\">注销</a>)";
-        ?>
+        @if(Auth::check())
+          <span class="profile-btn" data-dropdown="#dropdown-profile">{{ $current_user->username }}</span>(<a href="user/logout">注销</a>);
+        @endif
       </div>
     </div>
   </div>
@@ -122,8 +136,20 @@
     </ul>
   </div>
   <div class="pane ui-layout-center">
-    <div id="page">
-      <iframe id="frame" src="user" width="100%" height="100%"></iframe>
+    <div class="ui-layout-north" style="text-align:left;">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal">
+          <ul class="menubar">
+              <li class="pure-menu-selected" uri="user"><a>Flickr</a></li>
+              <li uri="user"><a>Messenger</a></li>
+              <li uri="user"><a>Sports</a></li>
+              <li uri="test1"><a>Finance</a></li>
+          </ul>
+      </div>
+    </div>
+    <div class="ui-layout-center" align="center">
+      <div id='page'>
+        <iframe id="frame" src="user" width="100%" height="100%"></iframe>
+      </div>
     </div>
   </div>
   <div class="pane ui-layout-south">
