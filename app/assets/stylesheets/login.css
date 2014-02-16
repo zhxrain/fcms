@@ -267,3 +267,10 @@ form:after {
 #login-error {
   color: red;
 }
+
+#footer
+{
+  font-size: 0.8em;
+  text-align: center;
+  border-top: 1px solid #C9E0ED;
+}

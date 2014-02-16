@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMenuItemsTable extends Migration {
+class CreateMenuitemsTable extends Migration {
 
   /**
    * Run the migrations.
@@ -11,7 +11,7 @@ class CreateMenuItemsTable extends Migration {
    * @return void
    */
   public function up() {
-    Schema::create('menu_items', function(Blueprint $table) {
+    Schema::create('menuitems', function(Blueprint $table) {
       // These columns are needed for Baum's Nested Set implementation to work.
       // Column names may be changed, but they *must* all exist and be modified
       // in the model.
@@ -46,7 +46,7 @@ class CreateMenuItemsTable extends Migration {
    * @return void
    */
   public function down() {
-    Schema::drop('menu_items');
+    Schema::drop('menuitems');
   }
 
 }

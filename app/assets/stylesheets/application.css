@@ -13,4 +13,5 @@
  *= require layout-default-latest
  *= require pure-min
  *= require_tree navgoco
+ *= require_tree jq.dropdown
  */

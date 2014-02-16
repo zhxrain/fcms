@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMenuItemRoleTable extends Migration {
+class CreateMenuitemRoleTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class CreateMenuItemRoleTable extends Migration {
 	 */
 	public function up()
 	{
-    Schema::create('menu_item_role', function(Blueprint $table) {
+    Schema::create('menuitem_role', function(Blueprint $table) {
       $table->increments('id');
-      $table->integer('menu_item_id');
+      $table->integer('menuitem_id');
       $table->integer('role_id');
     });
 		//
@@ -27,7 +27,7 @@ class CreateMenuItemRoleTable extends Migration {
 	 */
 	public function down()
 	{
-    Schema::drop('menu_item_role');
+    Schema::drop('menuitem_role');
 		//
 	}
 

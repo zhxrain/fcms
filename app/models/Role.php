@@ -7,8 +7,8 @@ class Role extends EntrustRole {
 
 	public static $rules = array();
 
-  public function menu_items()
+  public function menuitems()
   {
-    return $this->belongsToMany('MenuItem');
+    return $this->belongsToMany('Menuitem', 'menuitem_role');
   }
 }

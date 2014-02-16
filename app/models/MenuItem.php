@@ -3,16 +3,16 @@
 use Baum\Node;
 
 /**
-* MenuItem
+* Menuitem
 */
-class MenuItem extends Node {
+class Menuitem extends Node {
 
   /**
    * Table name.
    *
    * @var string
    */
-  protected $table = 'menu_items';
+  protected $table = 'menuitems';
 
   //////////////////////////////////////////////////////////////////////////////
 
@@ -64,7 +64,7 @@ class MenuItem extends Node {
 
   public function roles() {
     // body...
-    return $this->belongsToMany('Role');
+    return $this->belongsToMany('Role', 'menuitem_role');
   }
   //
   // This is to support "scoping" which may allow to have multiple nested

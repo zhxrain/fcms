@@ -20,9 +20,18 @@ class HomeController extends BaseController {
 		//return View::make('hello');
 		$users = User::all();
         if(Auth::check()) {
-          $user = Auth::user()->username;
-          $menu_items = MenuItem::all();
-          return View::make('layouts.main', array('users' => $users, 'current_user' => $user, 'menu_items' => $menu_items));
+          $user = Auth::user();
+          $roles=Role::all();
+          foreach($roles as $role)
+          {
+            if(Auth::user()->hasRole($role->name))
+            {
+              $menu_items = $role->menuitems;
+
+              //Debugbar::info($role->menuitems);
+            }
+          }
+          return View::make('layouts.main', array('users' => $users, 'current_user' => $user, 'menu_items' => $menu_items, 'role' => $role));
         }
         return Redirect::to('user/login');
 	}

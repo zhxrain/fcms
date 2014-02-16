@@ -38,6 +38,35 @@ html, body {
 	border-top: 1px solid #C9E0ED;
 }
 
+.profile-btn {
+  color: #49B12E;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.profile-btn:after {
+  font-family: Consolas, Courier New, Arial, sans-serif;
+  content: '↓';
+  margin-left: 6px;
+  color: #49B12E;
+}
+
+.profile-btn:hover {
+  background: #F2F2F2;
+}
+
+.profile-btn.dropdown-open {
+  background: #888;
+  color: #FFF;
+}
+
+.profile-btn.dropdown-open:after {
+  color: #FFF;
+}
+
+
 .header-bg {
   background-image: url(top04.jpg);
   background-repeat: repeat-x;

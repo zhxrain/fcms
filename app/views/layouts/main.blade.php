@@ -9,7 +9,34 @@
 
   <script>
     $(document).ready(function () {
-        $('.nav').navgoco();
+      $(".nav").navgoco({
+        accordion: true,
+        onClickBefore: function(e, submenu) {
+          console.log('Clicked on '+ (submenu === false ? 'leaf' : 'branch') + ' `'+$(this).text()+'`');
+        },
+        onClickAfter: function(e, submenu) {
+          e.preventDefault();
+          $('.nav').find('li').removeClass('active');
+          var li =  $(this).parent();
+          var lis = li.parents('li');
+          li.addClass('active');
+          lis.addClass('active');
+
+          var uri = li.attr('uri');
+          if(uri)
+            $("#frame").attr("src", uri);
+        },
+        onToggleBefore: function(submenu, opening) {
+          var idx = submenu.attr('data-index');
+          var message = opening ? 'opening' : 'closing';
+          console.log('I am ' + message + ' menu ' + idx + ' just after this.');
+        },
+        onToggleAfter: function(submenu, opened) {
+          var idx = submenu.attr('data-index');
+          var message = opened ? 'opened' : 'closed';
+          console.log('I ' + message + ' menu ' + idx + ' just before this.');
+        }
+      });
         $('#container').layout({
             closable: true
           , resizable: true
@@ -48,40 +75,21 @@
     </div>
     <div class="ui-layout-east" style="text-align:right;">
       <div style="margin: 50px 10px 5px 0px;">
-       </div>
+        <?php 
+          echo "<span class=\"profile-btn\" data-dropdown=\"#dropdown-profile\">".$current_user->username."</span>(<a href=\"user/logout\">注销</a>)";
+        ?>
+      </div>
     </div>
   </div>
   <div class="pane ui-layout-west" id="nav-sidebar">
     <ul class="nav">
-    <!--li><a href="#">1. Menu</a>
-        <ul>
-            <li><a href="#">1.1 Submenu</a></li>
-            <li><a href="#">1.2 Submenu</a></li>
-            <li><a href="#">1.3 Submenu</a></li>
-        </ul>
-    </li-->
-    <?php 
-      /*$user = Yii::app()->user;*/
-      //$auth=Yii::app()->authManager;
-      //$roles=$auth->getRoles($user->id);
-      //$menu_items=array();
-      //foreach($roles as $n=>$role) {
-        //$items=MenuItem::model()->with('roles')->findAll(array('condition'=>'roles.name="'.$role->getName().'"', 'order'=>'id'));
-        //$menu_items=array_merge($menu_items, $items);
-      /*}*/
-
+    <?php
       $depth=0;
-      $flag=0;
       foreach($menu_items as $n=>$item)
       {
         if($item->depth==$depth)
         {
-          if($flag == 0){
-            $flag = 1;
-          }
-          else{
-            echo "</li>\n";
-          }
+          echo "</li>\n";
         }
         else if($item->depth>$depth)
         {
@@ -124,7 +132,7 @@
     </div><!-- footer -->
   </div>
 
-<!--div id="dropdown-profile" class="dropdown dropdown-tip has-icons dropdown-anchor-right">
+<div id="dropdown-profile" class="dropdown dropdown-tip has-icons dropdown-anchor-right">
   <ul class="dropdown-menu">
     <li class="undo"><a href="#">Undo</a></li>
     <li class="redo"><a href="#">Redo</a></li>
@@ -134,7 +142,7 @@
     <li class="paste"><a href="#">Paste</a></li>
     <li class="delete"><a href="#">Delete</a></li>
   </ul>
-</div-->
+</div>
 </div>
 </body>
 </html>
