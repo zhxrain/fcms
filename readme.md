@@ -18,11 +18,14 @@ sudo mv composer.phar /usr/local/bin/composer
 git clone git@github.com:zhxrain/fcms.git
 composer install -vvv --prefer-dist -profile
 ```
-
-### init database
+### use debugbar
 
 ```bash
 php artisan debugbar:publish
+```
+### init database
+
+```bash
 php artisan migrate
 php artisan db:seed 
 ```
@@ -32,4 +35,5 @@ php artisan db:seed
 ```bash
 php -S localhost:9000 -t public/ server.php
 ```
+
 
