@@ -232,7 +232,7 @@ class UserController extends BaseController {
     public function getLogout()
     {
         Confide::logout();
-        
+
         return Redirect::to('/user/login');
     }
 

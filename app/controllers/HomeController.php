@@ -28,17 +28,20 @@ class HomeController extends BaseController {
             {
               $menu_items = $role->menuitems;
 
-              //Debugbar::info($role->menuitems);
+              $second_item = $menu_items->first()->children()->first();
+
+              Debugbar::info($second_item);
             }
           }
-          return View::make('layouts.main', array('users' => $users, 'current_user' => $user, 'menu_items' => $menu_items, 'role' => $role));
+          return View::make('layouts.main', array('users' => $users, 'current_user' => $user, 'menu_items' => $menu_items, 'role' => $role, 'second_item' => $second_item));
         }
         return Redirect::to('user/login');
 	}
-  public function showSubmenu()
+  public function showSubmenu($menuitem_id)
   {
     Debugbar::disable();
-    $menu_items = Menuitem::all();
+    $menu_item = Menuitem::find($menuitem_id);
+    $menu_items = $menu_item->getDescendants();
     return View::make('submenu', array('menu_items' => $menu_items));
   }
 }

@@ -30,8 +30,12 @@
           lis.addClass('active');
 
           var uri = li.attr('uri');
-          if(uri)
+          var item_id = li.attr('item_id');
+          if(uri){
             $("#frame").attr("src", uri);
+            if(item_id)
+              $("#submenu").attr("src", "submenu/"+item_id);
+          }
         },
         onToggleBefore: function(submenu, opening) {
           var idx = submenu.attr('data-index');
@@ -143,7 +147,7 @@
   </div>
   <div class="pane ui-layout-center">
     <div class="ui-layout-north" style="text-align:left; overflow:hidden;">
-      <iframe id="submenu" src="submenu" width ="100%" height="100%"></iframe>
+      <iframe id="submenu" src="submenu/{{ $second_item->id }}" width ="100%" height="100%"></iframe>
     </div>
     <div class="ui-layout-center" align="center">
       <div id='page'>
