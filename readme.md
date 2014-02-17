@@ -22,6 +22,7 @@ composer install -vvv --prefer-dist -profile
 ### init database
 
 ```bash
+php artisan debugbar:publish
 php artisan migrate
 php artisan db:seed 
 ```
