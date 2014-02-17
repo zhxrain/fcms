@@ -1,21 +1,34 @@
-## Laravel PHP Framework
+## fcms 
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
+### dependencies
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+#### install php5
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+```bash
+sudo apt-get install php5-sqlite php-pear php-db php5-cli php5
+```
+#### install composer
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+```bash
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
 
-## Official Documentation
+```bash
+git clone git@github.com:zhxrain/fcms.git
+composer install -vvv --prefer-dist -profile
+```
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+### init database
 
-### Contributing To Laravel
+```bash
+php artisan migrate
+php artisan db:seed 
+```
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+### start server
 
-### License
+```bash
+php -S localhost:9000 -t public/ server.php
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
