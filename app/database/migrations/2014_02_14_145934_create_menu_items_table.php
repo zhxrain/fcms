@@ -24,6 +24,7 @@ class CreateMenuitemsTable extends Migration {
 
       $table->string('uri', 32)->nullable();
       $table->string('name', 32);
+      $table->integer('submenu_flag');
 
       // Add needed columns here (f.ex: name, slug, path, etc.)
       // $table->string('name', 255);

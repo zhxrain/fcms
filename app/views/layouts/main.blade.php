@@ -103,6 +103,10 @@
       $depth=0;
       foreach($menu_items as $n=>$item)
       {
+        if($item->submenu_flag==1)
+        {
+          continue;
+        }
         if($item->depth==$depth)
         {
           echo "</li>\n";
@@ -122,7 +126,7 @@
           }
         }
 
-        echo "<li uri=\"".$item->uri."\">";
+        echo "<li uri=\"".$item->uri."\""."item_id=\"".$item->id."\">";
         echo "<a href=\"#\">";
         echo $item->name;
         echo "</a>\n";
