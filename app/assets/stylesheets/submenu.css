@@ -1,0 +1,20 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	color: #444;
+	-webkit-font-smoothing: antialiased;
+	background: #eaf6e6;
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /* when page gets too small */
+}
+
+#submenu-container {
+	width: 100%;
+  height: 100%;
+}
+
+#menubar {
+	background: #75a365;
+}

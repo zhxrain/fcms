@@ -11,7 +11,9 @@
     $(document).ready(function () {
       $('ul.menubar li').click(function(e)
       {
+        $('ul.menubar li').removeClass();
         $("#frame").attr("src", $(this).attr('uri'));
+        $(this).attr('class', 'pure-menu-selected');
       });
 
       $(".nav").navgoco({
@@ -90,7 +92,7 @@
     <div class="ui-layout-east" style="text-align:right;">
       <div style="margin: 50px 10px 5px 0px;">
         @if(Auth::check())
-          <span class="profile-btn" data-dropdown="#dropdown-profile">{{ $current_user->username }}</span>(<a href="user/logout">注销</a>);
+          <span class="profile-btn" data-dropdown="#dropdown-profile">{{ $current_user->username }}</span>(<a href="user/logout">注销</a>)
         @endif
       </div>
     </div>
@@ -136,15 +138,8 @@
     </ul>
   </div>
   <div class="pane ui-layout-center">
-    <div class="ui-layout-north" style="text-align:left;">
-      <div class="pure-menu pure-menu-open pure-menu-horizontal">
-          <ul class="menubar">
-              <li class="pure-menu-selected" uri="user"><a>Flickr</a></li>
-              <li uri="user"><a>Messenger</a></li>
-              <li uri="user"><a>Sports</a></li>
-              <li uri="test1"><a>Finance</a></li>
-          </ul>
-      </div>
+    <div class="ui-layout-north" style="text-align:left; overflow:hidden;">
+      <iframe id="submenu" src="submenu" width ="100%" height="100%"></iframe>
     </div>
     <div class="ui-layout-center" align="center">
       <div id='page'>

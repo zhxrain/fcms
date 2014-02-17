@@ -7,5 +7,7 @@
   <?= stylesheet_link_tag() ?>
 </head>
 <body>
-  @yield('content')
+  <div id="frame-container">
+    @yield('content')
+  </div>
 </body>

@@ -4,7 +4,7 @@ html, body {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	color: #444;
 	-webkit-font-smoothing: antialiased;
-	background: #f0f0f0;
+  background: #eaf6e6;
   padding: 0;
   margin: 0;
   overflow: hidden; /* when page gets too small */
@@ -17,6 +17,11 @@ html, body {
   background: #fff;
   min-width:600px;
   _width:600px; /* min-width for IE6 */boot/
+}
+
+#frame-container {
+	width: 100%;
+  height: 100%;
 }
 
 #page
@@ -36,6 +41,7 @@ html, body {
 #nav-sidebar
 {
 	border-top: 1px solid #C9E0ED;
+  background: #eaf6e6;
 }
 
 .profile-btn {
@@ -73,6 +79,11 @@ html, body {
 }
 
 #frame
+{
+  border: 0px;
+}
+
+#submenu
 {
   border: 0px;
 }

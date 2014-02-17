@@ -35,5 +35,10 @@ class HomeController extends BaseController {
         }
         return Redirect::to('user/login');
 	}
-
+  public function showSubmenu()
+  {
+    Debugbar::disable();
+    $menu_items = Menuitem::all();
+    return View::make('submenu', array('menu_items' => $menu_items));
+  }
 }
