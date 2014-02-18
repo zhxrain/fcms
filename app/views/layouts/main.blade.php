@@ -16,6 +16,8 @@
         $(this).attr('class', 'pure-menu-selected');
       });
 
+      $('.nav').find('li').first().addClass('active');
+
       $(".nav").navgoco({
         accordion: true,
         onClickBefore: function(e, submenu) {

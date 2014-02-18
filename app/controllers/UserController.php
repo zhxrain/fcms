@@ -19,12 +19,12 @@ class UserController extends BaseController {
 
     public function getIndex()
     {
-        $users = User::all();
+        $users = User::orderBy('id', 'ASC')->get();
         if(Auth::check()) {
           $user = Auth::user()->username;
-          return View::make('users', array('users' => $users, 'current_user' => $user));
+          return View::make('users.index', array('users' => $users, 'current_user' => $user));
         }
-        return View::make('users', array('users' => $users, 'current_user' => 'guest'));
+        return View::make('users.index', array('users' => $users, 'current_user' => 'guest'));
     }
 
     public function getCreate()

@@ -19,7 +19,7 @@ class MenuitemRoleTableSeeder extends Seeder {
     foreach($roles as $n=>$role)
     {
       $roleName=$role->name;
-      if($roleName=="admin")
+      if($roleName=="Administrators")
       {
         DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $root_system_config->id));
         //$role->menuitems()-save($root_system_config);
@@ -36,7 +36,16 @@ class MenuitemRoleTableSeeder extends Seeder {
           DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $descendant->id));
         }
       }
-      if($roleName=="Manager")
+      if($roleName=="Managers")
+      {
+        DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $root_system_config->id));
+        $root_system_config_descendants=$root_system_config->getDescendants();
+        foreach($root_system_config_descendants as $descendant)
+        {
+          DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $descendant->id));
+        }
+      }
+      if($roleName=="Auditors")
       {
         DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $root_system_config->id));
         $root_system_config_descendants=$root_system_config->getDescendants();

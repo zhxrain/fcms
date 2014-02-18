@@ -60,8 +60,8 @@ class MenuitemTableSeeder extends Seeder {
     $menu_sc_item4_1->makeChildOf($menu_sc_item4);
 
     $menu_sc_item4_2=Menuitem::create(array(
-      'name' => '权限管理',
-      'uri' => 'user',
+      'name' => '角色管理',
+      'uri' => 'role',
       'submenu_flag' => 1
     ));
     $menu_sc_item4_2->makeChildOf($menu_sc_item4);
