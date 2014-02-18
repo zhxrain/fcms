@@ -16,7 +16,7 @@ sudo mv composer.phar /usr/local/bin/composer
 
 ```bash
 git clone git@github.com:zhxrain/fcms.git
-composer install -vvv --prefer-dist -profile
+composer install -vvv --prefer-dist --profile
 ```
 ### use debugbar
 
