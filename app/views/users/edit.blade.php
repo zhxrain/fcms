@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="form">
-  <form class="pure-form pure-form-aligned" action="{{ $user->id }}" method="{{ $user?"put":"post" }}">
+  <form class="pure-form pure-form-aligned" action="{{ $user->id }}" method="post">
     <fieldset>
         <legend><h3>编辑账号</h3></legend>
         <div class="pure-control-group">
@@ -28,11 +28,15 @@
             </select>
         </div>
 
-        <div class="pure-controls">
-            <button type="submit" class="pure-button pure-button-primary">提交</button>
-        </div>
     </fieldset>
   </form>
+  <div class="pure-controls">
+      <input type="button" onClick="putUser()" id="submit1" class="pure-button pure-button-primary" value="提交">
+  </div>
 </div>
-
+<script>
+  function putUser(){
+    alert("button");
+  }
+</script>
 @stop

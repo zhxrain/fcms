@@ -1,8 +1,9 @@
 @extends('layouts.frame')
 
 @section('content')
-  <h1>角色列表</h1>
-  <table class="pure-table pure-table-bordered" style="margin-left: auto; margin-right: auto;">
+<div class='table'>
+  <h3>角色列表</h3>
+  <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
             <th>角色名称</th>
@@ -18,4 +19,5 @@
     @endforeach
     </tbody>
   </table>
+</div>
 @stop

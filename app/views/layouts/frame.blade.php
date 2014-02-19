@@ -4,6 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="language" content="en" />
 
+  <?= javascript_include_tag() ?>
   <?= stylesheet_link_tag() ?>
   <?= stylesheet_link_tag('frame') ?>
 </head>

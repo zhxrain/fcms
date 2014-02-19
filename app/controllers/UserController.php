@@ -93,7 +93,7 @@ class UserController extends BaseController {
      * Displays the login form
      *
      */
-    public function getLogin()
+    public function login()
     {
         if( Confide::user() )
         {

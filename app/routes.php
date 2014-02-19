@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@showHomepage');
 // Confide RESTful route
+Route::get('user/login', 'UserController@login');
+Route::post('user/login', 'UserController@postLogin');
 Route::get('user/confirm/{code}', 'UserController@getConfirm');
 Route::get('user/reset/{token}', 'UserController@getReset');
 
