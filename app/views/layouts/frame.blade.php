@@ -5,6 +5,7 @@
   <meta name="language" content="en" />
 
   <?= stylesheet_link_tag() ?>
+  <?= stylesheet_link_tag('frame') ?>
 </head>
 <body>
   <div id="frame-container">

@@ -17,7 +17,7 @@ class UserController extends BaseController {
      *
      */
 
-    public function getIndex()
+    public function index()
     {
         $users = User::orderBy('id', 'ASC')->get();
         if(Auth::check()) {
@@ -25,6 +25,26 @@ class UserController extends BaseController {
           return View::make('users.index', array('users' => $users, 'current_user' => $user));
         }
         return View::make('users.index', array('users' => $users, 'current_user' => 'guest'));
+    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        $roles = Role::all();
+        return View::make('users.edit', array('user' => $user, 'roles' => $roles));
+    }
+
+    public function create()
+    {
+    }
+
+    public function update($id)
+    {
+        $user = User::find($id);
+        $user->username = Input::get('name');
+        $user->email = Input::get('email');
+        $user->roles = Role::where('name', '=', Input::get('rolename'))->first();
+        Redirect::route('user');
     }
 
     public function getCreate()

@@ -15,10 +15,15 @@ Route::get('/', 'HomeController@showHomepage');
 // Confide RESTful route
 Route::get('user/confirm/{code}', 'UserController@getConfirm');
 Route::get('user/reset/{token}', 'UserController@getReset');
-Route::controller( 'user', 'UserController');
 
 // Role RESTful route
 Route::controller( 'role', 'RoleController');
 
 //Get submenu
 Route::get('submenu/{menuitem_id}', 'HomeController@showSubmenu');
+
+Route::get('user', 'UserController@index');
+Route::get('user/{id}', 'UserController@show');
+Route::put('user/{id}', 'UserController@update');
+Route::post('user/{id}', 'UserController@create');
+Route::delete('user/{id}', 'UserController@destroy');
