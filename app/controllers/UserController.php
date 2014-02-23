@@ -21,27 +21,72 @@ class UserController extends BaseController {
     {
         $users = User::orderBy('id', 'ASC')->get();
         if(Auth::check()) {
-          $user = Auth::user()->username;
-          return View::make('users.index', array('users' => $users, 'current_user' => $user));
+            $user = Auth::user()->username;
+            return View::make('users.index', array('users' => $users, 'current_user' => $user));
         }
         return View::make('users.index', array('users' => $users, 'current_user' => 'guest'));
     }
 
     public function show($id)
     {
-        $user = User::find($id);
         $roles = Role::all();
+        if($id == 0){
+            return View::make('users.create', array('roles' => $roles));
+        }
+        $user = User::find($id);
         return View::make('users.edit', array('user' => $user, 'roles' => $roles));
     }
 
     public function create()
     {
-        $users = User::orderBy('id', 'ASC')->get();
-        if(Auth::check()) {
-          $user = Auth::user()->username;
-          return View::make('users.index', array('users' => $users, 'current_user' => $user));
+        $username = Input::get('username');
+        $email = Input::get('email');
+        $password = Input::get('password');
+        $password_again = Input::get('password_again');
+        $rolename = Input::get('rolename');
+
+        $roles = Role::all();
+
+        if($password != $password_again){
+            $msg_error = "The twice input password is different!";
+            return View::make('users.create', array('username' => $username, 'rolename' => $rolename, 'email' => $email, 'msg_error' => $msg_error, 'roles' => $roles));
         }
-        return View::make('users.index', array('users' => $users, 'current_user' => 'guest'));
+
+        if(User::where('username', '=', $username)->count() > 0){
+            $msg_error = "The username is exist!";
+            return View::make('users.create', array('username' => $username, 'rolename' => $rolename, 'email' => $email, 'msg_error' => $msg_error, 'roles' => $roles));
+        }
+
+        $role = Role::where('name', '=', $rolename)->first();
+
+        $user = array(
+            array(
+                'username' => $username,
+                'email' => $email,
+                'password' => Hash::make($password),
+                'confirmed' => 1,
+                'confirmation_code' => md5(microtime().Config::get('app.key')),
+                'created_at' => new DateTime('now'),
+                'updated_at' => new DateTime('now'),
+            )
+        );
+        $result = DB::table('users')->insert($user);
+
+        $user_new = User::where('username', '=', $username)->first();
+
+        $user_new->attachRole( $role );
+
+        $users = User::all();
+
+        if($result == 1)
+        {
+            return View::make('users.index', array('users' => $users));
+        }
+        else
+        {
+            $msg_error = "Database error!";
+            return View::make('users.create', array('username' => $username, 'rolename' => $rolename, 'email' => $email, 'msg_error' => $msg_error, 'roles' => $roles));
+        }
     }
 
     public function update($id)

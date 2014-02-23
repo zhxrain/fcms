@@ -27,5 +27,5 @@ Route::get('submenu/{menuitem_id}', 'HomeController@showSubmenu');
 Route::get('user', 'UserController@index');
 Route::get('user/{id}', 'UserController@show');
 Route::put('user/{id}', 'UserController@update');
-Route::post('user/{id}', 'UserController@create');
+Route::post('user', 'UserController@create');
 Route::delete('user/{id}', 'UserController@destroy');

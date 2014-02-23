@@ -34,6 +34,10 @@
     @endforeach
     </tbody>
   </table>
+  </br>
+  <form action="/user/0" method="GET">
+    <button type="submit" id="submit1" class="pure-button pure-button-primary"> 新建用户</button>
+  </form>
 </div>
 <script>
   function deleteUser(){
