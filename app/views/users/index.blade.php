@@ -25,7 +25,7 @@
               <a href='user/{{ $user->id }}'><img src="assets/edit.png"/></a>
             </td>
             <td>
-              <a href='delete'><img src="assets/delete.png"/></a>
+              <a href="javascript:void(0)" onclick="deleteUser(this)"><img src="assets/delete.png"/></a>
             </td>
           </tr>
           </table>
@@ -35,4 +35,15 @@
     </tbody>
   </table>
 </div>
+<script>
+  function deleteUser(){
+    $.ajax({
+        url: "user/{{ $user->id }}",
+        type: 'DELETE',
+    }).then(function(data) {
+        if(data == '200')
+          document.location.href='/user';
+    });
+  }
+</script>
 @stop

@@ -36,20 +36,78 @@ class UserController extends BaseController {
 
     public function create()
     {
+        $users = User::orderBy('id', 'ASC')->get();
+        if(Auth::check()) {
+          $user = Auth::user()->username;
+          return View::make('users.index', array('users' => $users, 'current_user' => $user));
+        }
+        return View::make('users.index', array('users' => $users, 'current_user' => 'guest'));
     }
 
     public function update($id)
     {
         $user = User::find($id);
-        $user->username = Input::get('name');
-        $user->email = Input::get('email');
-        $user->roles = Role::where('name', '=', Input::get('rolename'))->first();
-        Redirect::route('user');
+        if (Input::has('old_password') && Input::has('new_password') && Input::has('new_password_again'))
+        {
+            $old_password = Input::get('old_password');
+            $new_password = Input::get('new_password');
+            $new_password_again = Input::get('new_password_again');
+            if($new_password_again != $new_password)
+            {
+              return Response::json("different new password", 404);
+            }
+            if (Hash::check($old_password, $user->password))
+            {
+              $input = array(
+                'token'=>Input::get( 'token' ),
+                'password' => $old_password,
+                'password_confirmation' => $new_password_again 
+              );
+              $result = DB::update('update users set password = ? where id = ?', array(Hash::make($new_password), $id));
+              //if( Confide::resetPassword( $input ) )
+              //{
+              //  $notice_msg = Lang::get('confide::confide.alerts.password_reset');
+              //  return Response::json($notice_msg, 200);
+              //}
+              //else
+              //{
+              //  $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
+              //  return Response::json($error_msg, 500);
+              //}
+              if($result == 1){
+                return Response::json("Update password success", 200);
+              }
+              return Response::json("Update password failed", 500);
+            }
+            return Response::json("password error", 500);
+        }
+        if (Input::has('name'))
+        {
+          $user->username = Input::get('name');
+          $user->email = Input::get('email');
+          $role_id = Role::where('name', '=', Input::get('rolename'))->first()->id;
+          $success = $user->updateUniques();
+          $result = DB::update('update assigned_roles set role_id = ? where user_id = ?', array($role_id, $id));
+          if($success && $result == 1)
+            return Response::json("Update success!", 200);
+          return Response::json("Update failed!", 500);
+        }
+        return Response::json("Input error!", 500);
+    }
+
+    public function destroy($id)
+    {
+      $user = User::find($id);
+      $success = $user->delete();
+      $result = DB::delete('delete from assigned_roles where user_id = ?', array($id));
+      if($success && $result == 1)
+        return '200';
+      return '500';
     }
 
     public function getCreate()
     {
-        return View::make(Config::get('confide::signup_form'));
+      return View::make(Config::get('confide::signup_form'));
     }
 
     /**
@@ -58,35 +116,35 @@ class UserController extends BaseController {
      */
     public function postIndex()
     {
-        $user = new User;
+      $user = new User;
 
-        $user->username = Input::get( 'username' );
-        $user->email = Input::get( 'email' );
-        $user->password = Input::get( 'password' );
+      $user->username = Input::get( 'username' );
+      $user->email = Input::get( 'email' );
+      $user->password = Input::get( 'password' );
 
-        // The password confirmation will be removed from model
-        // before saving. This field will be used in Ardent's
-        // auto validation.
-        $user->password_confirmation = Input::get( 'password_confirmation' );
+      // The password confirmation will be removed from model
+      // before saving. This field will be used in Ardent's
+      // auto validation.
+      $user->password_confirmation = Input::get( 'password_confirmation' );
 
-        // Save if valid. Password field will be hashed before save
-        $user->save();
+      // Save if valid. Password field will be hashed before save
+      $user->save();
 
-        if ( $user->id )
-        {
-            // Redirect with success message, You may replace "Lang::get(..." for your custom message.
-            return Redirect::to('user/login')
-                ->with( 'notice', Lang::get('confide::confide.alerts.account_created') );
-        }
-        else
-        {
-            // Get validation errors (see Ardent package)
-            $error = $user->errors()->all(':message');
+      if ( $user->id )
+      {
+        // Redirect with success message, You may replace "Lang::get(..." for your custom message.
+        return Redirect::to('user/login')
+          ->with( 'notice', Lang::get('confide::confide.alerts.account_created') );
+      }
+      else
+      {
+        // Get validation errors (see Ardent package)
+        $error = $user->errors()->all(':message');
 
-            return Redirect::to('user/create')
-                ->withInput(Input::except('password'))
-                    ->with( 'error', $error );
-        }
+        return Redirect::to('user/create')
+          ->withInput(Input::except('password'))
+          ->with( 'error', $error );
+      }
     }
 
     /**
@@ -95,9 +153,9 @@ class UserController extends BaseController {
      */
     public function login()
     {
-        if( Confide::user() )
-        {
-            // If user is logged, redirect to internal 
+      if( Confide::user() )
+      {
+        // If user is logged, redirect to internal 
             // page, change it to '/admin', '/dashboard' or something
             return Redirect::to('/');
         }
