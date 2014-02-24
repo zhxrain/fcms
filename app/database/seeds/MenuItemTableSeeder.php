@@ -77,6 +77,46 @@ class MenuitemTableSeeder extends Seeder {
       'submenu_flag' => 0
     ));
     $menu_nm_item1->makeChildOf($root_network_management);
+
+    $root_app_def=Menuitem::create(array(
+      'name' => '应用防护',
+      'submenu_flag' => 0
+    ));
+
+    $menu_ad_item1=Menuitem::create(array(
+      'name' => '协议控制',
+      'uri' => '',
+      'submenu_flag' => 0
+    ));
+    $menu_ad_item1->makeChildOf($root_app_def);
+
+    $menu_ad_item2=Menuitem::create(array(
+      'name' => '入侵防护',
+      'uri' => '',
+      'submenu_flag' => 0
+    ));
+    $menu_ad_item2->makeChildOf($root_app_def);
+
+    $menu_ad_item3=Menuitem::create(array(
+      'name' => 'Web应用防护',
+      'uri' => '',
+      'submenu_flag' => 0
+    ));
+    $menu_ad_item3->makeChildOf($root_app_def);
+
+    $menu_ad_item3_1=Menuitem::create(array(
+      'name' => '黑名单/白名单',
+      'uri' => 'black_list',
+      'submenu_flag' => 0
+    ));
+    $menu_ad_item3_1->makeChildOf($menu_ad_item3);
+
+    $menu_ad_item3_1_1=Menuitem::create(array(
+      'name' => '黑名单',
+      'uri' => 'black_list',
+      'submenu_flag' => 1
+    ));
+    $menu_ad_item3_1_1->makeChildOf($menu_ad_item3_1);
 		// Uncomment the below to run the seeder
 		// DB::table('menuitem')->insert($menuitem);
 	}

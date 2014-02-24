@@ -15,6 +15,7 @@ class MenuitemRoleTableSeeder extends Seeder {
 
     $root_system_config=Menuitem::where('name', '=', "系统配置")->first();
     $root_network_management=Menuitem::where('name', '=', "网络管理")->first();
+    $root_app_def=Menuitem::where('name', '=', "应用防护")->first();
 
     foreach($roles as $n=>$role)
     {
@@ -32,6 +33,13 @@ class MenuitemRoleTableSeeder extends Seeder {
         DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $root_network_management->id));
         $root_network_management_descendants=$root_network_management->getDescendants();
         foreach($root_network_management_descendants as $descendant)
+        {
+          DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $descendant->id));
+        }
+
+        DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $root_app_def->id));
+        $root_app_def_descendants=$root_app_def ->getDescendants();
+        foreach($root_app_def_descendants as $descendant)
         {
           DB::table('menuitem_role')->insert(array('role_id' => $role->id, 'menuitem_id' => $descendant->id));
         }
