@@ -13,7 +13,6 @@
         $("li").first().attr('class', 'pure-menu-selected');
         $('li').click(function(e)
         {
-          console.log("click");
           $('li').removeClass();
           $("#frame",window.parent.document).attr("src", $(this).attr('uri'));
           $(this).attr('class', 'pure-menu-selected');

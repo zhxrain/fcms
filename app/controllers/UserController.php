@@ -352,7 +352,7 @@ class UserController extends BaseController {
      * Log the user out of the application.
      *
      */
-    public function getLogout()
+    public function logout()
     {
         Confide::logout();
 

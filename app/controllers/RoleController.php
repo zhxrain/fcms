@@ -7,7 +7,7 @@ class RoleController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function getIndex()
+	public function index()
 	{
     $roles = Role::all();
     return View::make('roles.index', ['roles' => $roles]);
@@ -20,7 +20,17 @@ class RoleController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('roles.create');
+    $rolename = Input::get('rolename');
+    $description = Input::get('description');
+    $count = DB::table('roles')->where('name', '=', $rolename)->count();
+    if($count > 0)
+      return View::make('roles.create', array('rolename' => $rolename, 'description' => $description, 'msg_error' => "The role name is already exist, please change the role name and submit again"));
+    $role = new Role;
+    $role->name = $rolename;
+    $role->description = $description;
+    $role->save();
+    $roles = Role::all();
+    return View::make('roles.index', ['roles' => $roles]);
 	}
 
 	/**
@@ -41,7 +51,11 @@ class RoleController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('roles.show');
+        if($id == 0){
+            return View::make('roles.create');
+        }
+        $role = Role::find($id);
+        return View::make('roles.edit', array('role' => $role));
 	}
 
 	/**
@@ -63,6 +77,12 @@ class RoleController extends BaseController {
 	 */
 	public function update($id)
 	{
+    $role = Role::find($id);
+    $role->name = Input::get('rolename');
+    $role->description = Input::get('description');
+    $role->save();
+    $roles = Role::all();
+    return View::make('roles.index', ['roles' => $roles]);
 		//
 	}
 
@@ -74,7 +94,14 @@ class RoleController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+    $role = Role::find($id);
+    $count = DB::table('menuitem_role')->where('role_id', '=', $id)->count();
+    if($count > 0)
+      return Response::json("The role is used by User, please delete or update the user first!", 500);
+    $success = $role->delete();
+    if($success)
+      return '200';
+    return '500';
 	}
 
 }

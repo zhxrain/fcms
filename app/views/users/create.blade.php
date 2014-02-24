@@ -4,7 +4,7 @@
 <div class="form">
   <form class="pure-form pure-form-aligned" action="/user" method="post">
     <fieldset>
-        <legend><h3>编辑账号</h3></legend>
+        <legend><h3>新建账号</h3></legend>
         <div style="color: red;">
           {{ $msg_error or '' }}
         </div>
