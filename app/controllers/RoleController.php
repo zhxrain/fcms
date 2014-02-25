@@ -20,17 +20,18 @@ class RoleController extends BaseController {
 	 */
 	public function create()
 	{
-    $rolename = Input::get('rolename');
-    $description = Input::get('description');
-    $count = DB::table('roles')->where('name', '=', $rolename)->count();
-    if($count > 0)
-      return View::make('roles.create', array('rolename' => $rolename, 'description' => $description, 'msg_error' => "The role name is already exist, please change the role name and submit again"));
-    $role = new Role;
-    $role->name = $rolename;
-    $role->description = $description;
-    $role->save();
-    $roles = Role::all();
-    return View::make('roles.index', ['roles' => $roles]);
+    //$rolename = input::get('rolename');
+    //$description = input::get('description');
+    //$count = db::table('roles')->where('name', '=', $rolename)->count();
+    //if($count > 0)
+      //return view::make('roles.create', array('rolename' => $rolename, 'description' => $description, 'msg_error' => "the role name is already exist, please change the role name and submit again"));
+    //$role = new role;
+    //$role->name = $rolename;
+    //$role->description = $description;
+    //$role->save();
+    //$roles = Role::all();
+    //return View::make('roles.index', ['roles' => $roles]);
+    return View::make('roles.create');
 	}
 
 	/**
@@ -41,6 +42,17 @@ class RoleController extends BaseController {
 	public function store()
 	{
 		//
+    $rolename = Input::get('rolename');
+    $description = Input::get('description');
+    $count = DB::table('roles')->where('name', '=', $rolename)->count();
+    if($count > 0)
+      return View::make('roles.create', array('rolename' => $rolename, 'description' => $description, 'msg_error' => "the role name is already exist, please change the role name and submit again"));
+    $role = new Role;
+    $role->name = $rolename;
+    $role->description = $description;
+    $role->save();
+    $roles = Role::all();
+    return View::make('roles.index', ['roles' => $roles]);
 	}
 
 	/**

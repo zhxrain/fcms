@@ -23,6 +23,7 @@ Route::get('user/reset/{token}', 'UserController@getReset');
 //Get submenu
 Route::get('submenu/{menuitem_id}', 'HomeController@showSubmenu');
 
+Route::resource('role', 'RoleController');
 // User RESTful route
 Route::get('user', 'UserController@index');
 Route::get('user/{id}', 'UserController@show');
@@ -31,8 +32,8 @@ Route::post('user', 'UserController@create');
 Route::delete('user/{id}', 'UserController@destroy');
 
 // Role RESTful route
-Route::get('role', 'RoleController@index');
-Route::get('role/{id}', 'RoleController@show');
-Route::put('role/{id}', 'RoleController@update');
-Route::post('role', 'RoleController@create');
-Route::delete('role/{id}', 'RoleController@destroy');
+//Route::get('role', 'RoleController@index');
+//Route::post('role', 'RoleController@show');
+//Route::put('role/{id}', 'RoleController@update');
+//Route::post('role', 'RoleController@create');
+//Route::delete('role/{id}', 'RoleController@destroy');

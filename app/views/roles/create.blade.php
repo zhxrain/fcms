@@ -15,7 +15,7 @@
 
         <div class="pure-control-group">
             <label for="description">描述:</label>
-            <input id="description" name="description" type="text" placeholder="Description" value="{{ $descendant or ""}}" required>
+            <input id="description" name="description" type="text" placeholder="Description" value="{{ $description or ""}}" required>
         </div>
 
         <div class="pure-controls">

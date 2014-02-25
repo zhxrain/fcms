@@ -33,7 +33,7 @@
     </tbody>
   </table>
   </br>
-  <form action="/role/0" method="GET">
+  <form action="/role/create" method="GET">
     <button type="submit" id="submit1" class="pure-button pure-button-primary"> 新建角色</button>
   </form>
 </div>
